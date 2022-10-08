@@ -4,13 +4,16 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.dom.*;
+import responses.Question1;
 
 public class Parser {
 
-    public static final String projectPath = "/home/ilyas/Documents/#Others/Univ-montpellier/Tps-um/ERL/tp1-part1/src/main/resources/Calculator";
+    public static final String projectPath = "/home/ilyas/Documents/#Others/Univ-montpellier/Tps-um/ERL/oo-app-statistical-analyzer/src/main/resources/Calculator";
     public static final String projectSourcePath = projectPath + "/src";
 
     public static void main(String[] args) throws IOException {
+
+        Question1 question1 = null;
 
         // read java files
         final File folder = new File(projectSourcePath);
@@ -19,7 +22,12 @@ public class Parser {
             String content = FileUtils.readFileToString(fileEntry);
             CompilationUnit parse = Config.createOwnParse(content.toCharArray(), projectSourcePath);
 
+            question1 = new Question1(parse);
+
         }
+
+        System.out.println("1 : " + question1.getTotalClassesNbr());
+
     }
 
     // read all java files from specific folder
