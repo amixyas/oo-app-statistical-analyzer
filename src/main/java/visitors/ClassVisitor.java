@@ -42,6 +42,20 @@ public class ClassVisitor extends ASTVisitor{
      }
      */
 
+    /** TODO : SOL-Variables-2
+     * Not good to work with [VariableDeclaration] cuz it's need to be casted to VariableDeclarationFragment or SingleVariableDeclaration
+
+     public static Map<String, VariableDeclaration> variables = new HashMap<String, VariableDeclaration>();
+
+     public boolean visit (VariableDeclarationFragment node) {
+        variables.put(node.getParent().toString(),node);
+        return super.visit((VariableDeclarationFragment) node);
+     }
+     public Map<String, VariableDeclaration> getVariables() {
+        return variables;
+     }
+     */
+
 }
 
 
