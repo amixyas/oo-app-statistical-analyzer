@@ -14,6 +14,7 @@ public class Parser {
     public static void main(String[] args) throws IOException {
 
         Question1 question1 = null;
+        Question1 question2 = null;
 
         // read java files
         final File folder = new File(projectSourcePath);
@@ -22,11 +23,16 @@ public class Parser {
             String content = FileUtils.readFileToString(fileEntry);
             CompilationUnit parse = Config.createOwnParse(content.toCharArray(), projectSourcePath);
 
-            question1 = new Question1(parse);
+            //question1 = new Question1(parse);
+            //question2 = new Question2(parse);
 
         }
 
-        System.out.println("1 : " + question1.getTotalClassesNbr());
+        /**
+         System.out.println("1 : " + question1.getTotalClassesNbr());
+        */
+        
+        //System.out.println("2 : " + question2.getTotalLines());
 
     }
 
