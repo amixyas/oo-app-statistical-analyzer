@@ -20,6 +20,7 @@ public class Parser {
         Question3_5_7 question3_5_7 = null;
         Question4 question4 = null;
         Question6 question6 = new Question6();
+        Question8To13 question8To13 = null;
 
 
         // read java files
@@ -64,6 +65,41 @@ public class Parser {
          System.out.println("7 : " + MoyAttributesPerClass);
         */
 
+
+        /**
+         System.out.println("8 : ");
+         question8_13 = new Question8_13(question1.getTotalClassesNbr());
+         question8_13.getClasses10Methods();
+
+
+
+         System.out.println("9 : ");
+         question8_13 = new Question8_13(question1.getTotalClassesNbr());
+         question8_13.getClasses10Attirbutes();
+
+
+
+         System.out.println("10 : ");
+         question8_13 = new Question8_13(question1.getTotalClassesNbr());
+         question8_13.getClasses10methodsAttributes();
+
+
+
+         System.out.println("11 : ");
+         question8_13 = new Question8_13(question1.getTotalClassesNbr());
+         question8_13.getClassesXMethods(2);
+
+
+         System.out.println("12 : ");
+         question8_13 = new Question8_13(question1.getTotalClassesNbr(), question3.getTotalMethodsNbr());
+         question8_13.getMethods10Lines();
+
+
+         System.out.println("13 : ");
+         question8_13 = new Question8_13(question1.getTotalClassesNbr(), question3.getTotalMethodsNbr());
+         System.out.println(question8_13.getMaxParamsNbr());
+         */
+        
     }
 
     // read all java files from specific folder
