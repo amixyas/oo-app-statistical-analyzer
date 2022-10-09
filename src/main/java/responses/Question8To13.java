@@ -1,0 +1,31 @@
+package responses;
+
+import org.eclipse.jdt.core.dom.MethodDeclaration;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static responses.Question3_5_7.classVisitor;
+
+/** TODO : Question : 8 9 10 11 12 13 */
+
+public class Question8To13 {
+
+    List<String> classes10methods;
+    List<String> classes10attributes;
+    List<String> classes10methodsAttributes =  new ArrayList<>();
+    List<String> classesXmethods =  new ArrayList<>();
+    List<String> methods10lines;    int maxClasses;
+    int maxMethods;
+
+    public Question8To13(int totalClassesNbr, int totalMethodsNbr) {
+        double doubleNumber = totalClassesNbr*10.0/100;
+        maxClasses = (int) doubleNumber;
+        if (maxClasses == 0 || (doubleNumber - maxClasses) >= 0.5 ) maxClasses += 1;
+
+        doubleNumber = totalMethodsNbr*10.0/100;
+        maxMethods = (int) doubleNumber;
+        if (maxMethods == 0 || (doubleNumber - maxMethods) >= 0.5 ) maxMethods += 1;
+    }
+}
