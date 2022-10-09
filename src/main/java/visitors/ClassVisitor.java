@@ -8,6 +8,8 @@ import java.util.*;
  * Visiting Classes
  * Visiting Attributes
  * Make next relations : Class-Attributes and Class-Methods
+ * In this visitor i made 3 solutions to get attributes and make the relation Class-Attributes
+ and every solution has its own pros and cons.
 */
 
 public class ClassVisitor extends ASTVisitor{
@@ -80,6 +82,10 @@ public class ClassVisitor extends ASTVisitor{
             parents.add( ( (TypeDeclaration) node.getParent().getParent() ).getName().toString() );
         }
         return super.visit(node);
+    }
+
+    public int getTotalVariablesNbr() {
+        return getVariables().size();
     }
 
     public List<String> getVariables() {
