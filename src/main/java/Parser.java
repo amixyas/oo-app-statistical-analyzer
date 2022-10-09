@@ -21,7 +21,7 @@ public class Parser {
         Question4 question4 = null;
         Question6 question6 = new Question6();
         Question8To13 question8To13 = null;
-
+        Question14 question14 = new Question14();
 
         // read java files
         final File folder = new File(projectSourcePath);
@@ -99,7 +99,7 @@ public class Parser {
          question8_13 = new Question8_13(question1.getTotalClassesNbr(), question3.getTotalMethodsNbr());
          System.out.println(question8_13.getMaxParamsNbr());
          */
-        
+        System.out.println(question14.callGraph());
     }
 
     // read all java files from specific folder
