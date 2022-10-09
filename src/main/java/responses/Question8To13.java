@@ -78,4 +78,10 @@ public class Question8To13 {
         return classes10methodsAttributes;
     }
 
+    public List<String> getClassesXMethods(int x) {
+        for (var entry : methods.entrySet())if (x <= entry.getValue().length) classesXmethods.add(entry.getKey());
+        //classesXmethods.forEach(classeName-> System.out.println(classeName));
+        return classesXmethods;
+    }
+
 }
