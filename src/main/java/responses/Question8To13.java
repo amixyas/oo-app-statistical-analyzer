@@ -21,7 +21,7 @@ public class Question8To13 {
 
     Map<String, MethodDeclaration[]> methods = classVisitor.getMethods();
 
-    
+
     public Question8To13(int totalClassesNbr, int totalMethodsNbr) {
         double doubleNumber = totalClassesNbr*10.0/100;
         maxClasses = (int) doubleNumber;
@@ -49,5 +49,26 @@ public class Question8To13 {
         //classes10methods.forEach(classeName-> System.out.println(classeName));
         return classes10methods;
     }
+
+    public List<String> getClasses10Attirbutes() {
+        Map<String, List<String>> attributes = classVisitor.getParentVariables();
+        classes10attributes =  new ArrayList<>();
+
+        int max = 0;
+        String name = "";
+        for (int i = 1; i <= maxClasses; i++) {
+            for (var entry : attributes.entrySet()) {
+                if (max < entry.getValue().size() && ! name.equals(entry.getKey()) ) {
+                    max = entry.getValue().size();
+                    name = entry.getKey();
+                }
+            }
+            classes10attributes.add(name);
+        }
+        //classes10attributes.forEach(classeName-> System.out.println(classeName));
+
+        return classes10attributes;
+    }
+    
 
 }
