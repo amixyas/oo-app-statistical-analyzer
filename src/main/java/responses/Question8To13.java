@@ -69,6 +69,13 @@ public class Question8To13 {
 
         return classes10attributes;
     }
-    
+
+    public List<String> getClasses10methodsAttributes() {
+        getClasses10Methods();
+        getClasses10Attirbutes();
+        classes10methods.forEach(cm->{classes10attributes.forEach(ct->{if(cm.equals(ct))classes10methodsAttributes.add(cm);});});
+        //classes10methodsAttributes.forEach(classeName-> System.out.println(classeName));
+        return classes10methodsAttributes;
+    }
 
 }
