@@ -84,4 +84,25 @@ public class Question8To13 {
         return classesXmethods;
     }
 
+    public List<String> getMethods10Lines () {
+        methods10lines =  new ArrayList<>();
+
+        int max = 0;
+        String name = "";
+        for (int i = 1; i <= maxMethods; i++) {
+            for (var entry : methods.entrySet()) {
+                for (MethodDeclaration method : entry.getValue()) {
+                    //System.out.println( method.getName().toString());
+                    if (max <= method.getBody().toString().split("\n").length && ! name.equals(method.getName().toString())) {
+                        max = method.getBody().toString().split("\n").length;
+                        name = method.getName().toString();
+                    }
+                }
+            }
+            methods10lines.add(name);
+        }
+        //methods10lines.forEach(methodName-> System.out.println(methodName));
+        return methods10lines;
+    }
+
 }
