@@ -19,6 +19,9 @@ public class Question8To13 {
     List<String> methods10lines;    int maxClasses;
     int maxMethods;
 
+    Map<String, MethodDeclaration[]> methods = classVisitor.getMethods();
+
+    
     public Question8To13(int totalClassesNbr, int totalMethodsNbr) {
         double doubleNumber = totalClassesNbr*10.0/100;
         maxClasses = (int) doubleNumber;
@@ -28,4 +31,23 @@ public class Question8To13 {
         maxMethods = (int) doubleNumber;
         if (maxMethods == 0 || (doubleNumber - maxMethods) >= 0.5 ) maxMethods += 1;
     }
+
+    public List<String> getClasses10Methods() {
+        classes10methods =  new ArrayList<>();
+
+        int max = 0;
+        String name = "";
+        for (int i = 1; i <= maxClasses; i++) {
+            for (var entry : methods.entrySet()) {
+                if (max < entry.getValue().length && !name.equals(entry.getKey()) ) {
+                    max = entry.getValue().length;
+                    name = entry.getKey();
+                }
+            }
+            classes10methods.add(name);
+        }
+        //classes10methods.forEach(classeName-> System.out.println(classeName));
+        return classes10methods;
+    }
+
 }
