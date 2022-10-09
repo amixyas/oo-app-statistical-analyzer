@@ -16,14 +16,23 @@ public class ClassVisitor extends ASTVisitor{
 
     /**  TODO : SOL-Variables-1
      public static Map<String, FieldDeclaration[]> variables = new HashMap<String, FieldDeclaration[]>();
-     */
+    */
 
     public static Map<String, MethodDeclaration[]> methods = new HashMap<>();
     public  Map<String, MethodDeclaration[]> getMethods() {return methods;}
 
+
+    /** methodsV2 is for Question14 */
+    public static List<MethodDeclaration> methodsV2 = new ArrayList<>() ;
+    public List<MethodDeclaration> getMethodsvV2() {
+        return methodsV2;
+    }
+
     public boolean visit(TypeDeclaration node) {
         if (!node.isInterface()) {
             methods.put(node.getName().toString(), node.getMethods());
+
+            for (MethodDeclaration m : node.getMethods()) methodsV2.add(m);
 
             /** TODO : SOL-Variables-1
              * The problem with [node.getFields] that there is a such cases like [public String firstName, lastName, city]
