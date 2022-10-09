@@ -105,4 +105,16 @@ public class Question8To13 {
         return methods10lines;
     }
 
+    public int getMaxParamsNbr () {
+
+        int max = 0;
+        for (int i = 1; i <= maxMethods; i++)
+            for (var entry : methods.entrySet())
+                for (MethodDeclaration method : entry.getValue()) {
+                    if (max <= method.parameters().size()) max = method.parameters().size();
+                    method.parameters().forEach(p-> System.out.println(p.toString()));
+                }
+        return max;
+    }
+
 }
