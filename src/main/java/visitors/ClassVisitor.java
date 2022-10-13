@@ -115,12 +115,14 @@ public class ClassVisitor extends ASTVisitor{
                 }
         }
         vars.add(temp);
-        // List<String> clearParents = new ArrayList<LinkedList<String>()>;
+        List<String> clearParents = new ArrayList<>(new LinkedList<String>(parents));
         for (int k = 0; k < vars.size(); k++)
-            parentVariables.put(parents.get(k), vars.get(k));
-        /**
+            parentVariables.put(clearParents.get(k), vars.get(k));
+
+
          for (var entry : parentVariables.entrySet())
          System.out.println("class : "+entry.getKey()+" --- attributes : "+ entry.getValue()+"\n");
-        */
+
+
     }
 }
