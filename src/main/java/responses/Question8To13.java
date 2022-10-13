@@ -19,6 +19,9 @@ public class Question8To13 {
     List<String> methods10lines;    int maxClasses;
     int maxMethods;
 
+    Map<String, MethodDeclaration[]> methods = classVisitor.getMethods();
+
+
     public Question8To13(int totalClassesNbr, int totalMethodsNbr) {
         double doubleNumber = totalClassesNbr*10.0/100;
         maxClasses = (int) doubleNumber;
@@ -108,6 +111,7 @@ public class Question8To13 {
         }
         //methods10lines.forEach(methodName-> System.out.println(methodName));
         return methods10lines;
+        //re-init max to 0 + remove the element
     }
 
     public int getMaxParamsNbr () {
