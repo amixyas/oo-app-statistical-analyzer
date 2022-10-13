@@ -70,7 +70,6 @@ public class ClassVisitor extends ASTVisitor{
      */
 
 
-
     /** TODO : SOL-Variables-3
      * The good thing here is that we get all variables and separated, but to make relation between the variable
      and his parent we should do a little extra work :
@@ -93,16 +92,11 @@ public class ClassVisitor extends ASTVisitor{
         return super.visit(node);
     }
 
-    public int getTotalVariablesNbr() {
-        return getVariables().size();
-    }
-
     public List<String> getVariables() {
         return variables;
     }
-    public List<String> getParent() {
-        return parents;
-    }
+    public List<String> getParent() {return parents;}
+
     public Map<String, List<String>> getParentVariables() {
         pushParentVariables();
         return parentVariables;
@@ -121,16 +115,12 @@ public class ClassVisitor extends ASTVisitor{
                 }
         }
         vars.add(temp);
+        // List<String> clearParents = new ArrayList<LinkedList<String>()>;
         for (int k = 0; k < vars.size(); k++)
             parentVariables.put(parents.get(k), vars.get(k));
         /**
          for (var entry : parentVariables.entrySet())
          System.out.println("class : "+entry.getKey()+" --- attributes : "+ entry.getValue()+"\n");
-
-
-         for (int k = 0; k < vars.size(); k++)
-         for (int m = 0; m < vars.get(k).size(); m++)
-         System.out.println(k+"-"+vars.get(k).get(m));
-         */
+        */
     }
 }
