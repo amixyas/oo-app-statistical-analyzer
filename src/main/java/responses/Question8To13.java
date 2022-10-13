@@ -19,9 +19,6 @@ public class Question8To13 {
     List<String> methods10lines;    int maxClasses;
     int maxMethods;
 
-    Map<String, MethodDeclaration[]> methods = classVisitor.getMethods();
-
-
     public Question8To13(int totalClassesNbr, int totalMethodsNbr) {
         double doubleNumber = totalClassesNbr*10.0/100;
         maxClasses = (int) doubleNumber;
@@ -34,19 +31,20 @@ public class Question8To13 {
 
     public List<String> getClasses10Methods() {
         classes10methods =  new ArrayList<>();
+        Map<String, MethodDeclaration[]> methods = classVisitor.getMethods();
 
         int max = 0;
         String name = "";
         for (int i = 1; i <= maxClasses; i++) {
             for (var entry : methods.entrySet()) {
-
-                if (max < entry.getValue().length && !name.equals(entry.getKey()) ) {
+                if (max <= entry.getValue().length && !name.equals(entry.getKey()) ) {
                     max = entry.getValue().length;
                     name = entry.getKey();
                 }
             }
             classes10methods.add(name);
             max = 0;
+            methods.remove(name);
         }
         //classes10methods.forEach(classeName-> System.out.println(classeName));
         return classes10methods;
@@ -60,13 +58,14 @@ public class Question8To13 {
         String name = "";
         for (int i = 1; i <= maxClasses; i++) {
             for (var entry : attributes.entrySet()) {
-                if (max < entry.getValue().size() && ! name.equals(entry.getKey()) ) {
+                if (max < entry.getValue().size()) {
                     max = entry.getValue().size();
                     name = entry.getKey();
                 }
             }
             classes10attributes.add(name);
             max = 0;
+            attributes.remove(name);
         }
         //classes10attributes.forEach(classeName-> System.out.println(classeName));
 
@@ -89,6 +88,7 @@ public class Question8To13 {
 
     public List<String> getMethods10Lines () {
         methods10lines =  new ArrayList<>();
+        Map<String, MethodDeclaration[]> methods = classVisitor.getMethods();
 
         int max = 0;
         String name = "";
@@ -104,6 +104,7 @@ public class Question8To13 {
             }
             methods10lines.add(name);
             max = 0;
+            methods.remove(name);
         }
         //methods10lines.forEach(methodName-> System.out.println(methodName));
         return methods10lines;
