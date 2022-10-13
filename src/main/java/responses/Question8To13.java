@@ -39,12 +39,14 @@ public class Question8To13 {
         String name = "";
         for (int i = 1; i <= maxClasses; i++) {
             for (var entry : methods.entrySet()) {
+
                 if (max < entry.getValue().length && !name.equals(entry.getKey()) ) {
                     max = entry.getValue().length;
                     name = entry.getKey();
                 }
             }
             classes10methods.add(name);
+            max = 0;
         }
         //classes10methods.forEach(classeName-> System.out.println(classeName));
         return classes10methods;
@@ -64,6 +66,7 @@ public class Question8To13 {
                 }
             }
             classes10attributes.add(name);
+            max = 0;
         }
         //classes10attributes.forEach(classeName-> System.out.println(classeName));
 
@@ -79,7 +82,7 @@ public class Question8To13 {
     }
 
     public List<String> getClassesXMethods(int x) {
-        for (var entry : methods.entrySet())if (x <= entry.getValue().length) classesXmethods.add(entry.getKey());
+        for (var entry : methods.entrySet()) if (x <= entry.getValue().length) classesXmethods.add(entry.getKey());
         //classesXmethods.forEach(classeName-> System.out.println(classeName));
         return classesXmethods;
     }
@@ -100,6 +103,7 @@ public class Question8To13 {
                 }
             }
             methods10lines.add(name);
+            max = 0;
         }
         //methods10lines.forEach(methodName-> System.out.println(methodName));
         return methods10lines;
