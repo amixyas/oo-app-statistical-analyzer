@@ -27,6 +27,11 @@ public class Question3_5_7 {
         return totalMethodsNbr;
     }
 
+    public int getTotalVariablesNbr() {
+        return classVisitor.getVariables().size();
+    }
+
+
 
 
 }
