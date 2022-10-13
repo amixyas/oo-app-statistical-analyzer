@@ -21,7 +21,7 @@ public class Question14 {
         List<MethodDeclaration> methods = Question3_5_7.classVisitor.getMethodsvV2();
 
         if (methods.size() > 0) {
-            data = data + "\n" + "Methods list >>\n\n";
+            data = data + "\n" + "Methods invocations >>\n\n";
             for (MethodDeclaration method : methods) {
                 data = data + "Method name : " + method.getName() ;
                 MethodInvocationVisitor methodVisitor = createMethodVisitor(method);
