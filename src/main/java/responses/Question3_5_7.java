@@ -8,25 +8,26 @@ public class Question3_5_7 {
 
     CompilationUnit parse;
     public static ClassVisitor classVisitor = new ClassVisitor();
-    public static int totalMethodsNbr = 0;
+
+    public Question3_5_7(){}
 
     public Question3_5_7(CompilationUnit parse){
         this.parse = parse;
         parse.accept(classVisitor);
     }
 
-    public static int getTotalMethodsNbr(){
-        for (String key : classVisitor.getMethods().keySet())
-            totalMethodsNbr +=  classVisitor.getMethods().get(key).length;
+    public int printMethods(){
         for (var entry : classVisitor.getMethods().entrySet()) {
-            // System.out.println("key : "+entry.getKey()+"\n");
+            System.out.println("\n* Class name : "+entry.getKey()+"");
+            System.out.println("* Class methods :");
             for (MethodDeclaration method : entry.getValue()) {
-                // System.out.println(method.getName().toString());
+                System.out.println("- "+method.getName().toString());
             }
         }
-        return totalMethodsNbr;
+        return getTotalMethodsNbr();
     }
 
+    public int getTotalMethodsNbr() {return classVisitor.getMethodsvV2().size();}
     public int getTotalVariablesNbr() {
         return classVisitor.getVariables().size();
     }
