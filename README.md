@@ -1,1 +1,3 @@
-oo-app-statistical-analyzer
+##oo-app-statistical-analyzer
+
+run : java -jar oo-app-statistical-analyzer.jar
