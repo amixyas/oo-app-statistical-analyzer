@@ -10,8 +10,8 @@ public class Question6 {
     public int totalMethodsLine = 0;
 
     public double getMethodMoyLines(){
-        for (String key : classVisitor.getMethods().keySet())
-            totalMethodsNbr +=  classVisitor.getMethods().get(key).length;
+        Question3_5_7 question3_5_7 = new Question3_5_7();
+        totalMethodsNbr = question3_5_7.getTotalMethodsNbr();
         for (var entry : classVisitor.getMethods().entrySet()) {
             for (MethodDeclaration method : entry.getValue()) {
                 //System.out.println(method.getName().toString());
@@ -21,7 +21,23 @@ public class Question6 {
                 totalMethodsLine += method.getBody().toString().split("\n").length;
             }
         }
-        //System.out.println(totalMethodsLine);
+
+        System.out.println("Explanation for how calculation on lines it goes on : \n" +
+                "* We have :\n" +
+                "  public static void main(String[] args) {\n" +
+                "     Object object = new Object();\n" +
+                "     \n" +
+                "     object.KillAll();\n" +
+                "     //help me!!\n" +
+                "     System.out.println(\"good bay\");\n" +
+                "  }\n" +
+                "\n" +
+                "* The body is :\n" +
+                " {\n" +
+                "    Object object = new Object();\n" +
+                "    object.KillAll();\n" +
+                "    System.out.println(\"good bay\");\n" +
+                " }");
         return totalMethodsLine * 1.00 / totalMethodsNbr;
     }
 
