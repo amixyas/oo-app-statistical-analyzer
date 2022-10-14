@@ -12,7 +12,6 @@ public class Question1_2 {
     CompilationUnit parse;
     public static PackageVisitor  packageVisitor = new PackageVisitor();
 
-    public Question1_2(){}
     public Question1_2(CompilationUnit parse){
         this.parse = parse;
         parse.accept(packageVisitor);
