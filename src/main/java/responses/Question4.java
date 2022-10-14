@@ -9,7 +9,6 @@ import java.util.Set;
 public class Question4 {
 
     CompilationUnit parse;
-    public static int totalClassesNbr = 0;
     public PackageVisitor packageVisitor = new PackageVisitor();
     public static Set<String> packages = new HashSet<>();
 
@@ -20,7 +19,9 @@ public class Question4 {
     }
 
     public int getTotalPackagesNbr(){
-        packages.forEach(i -> System.out.println(i));
+        int index = 1;
+        System.out.println("");
+        for (String pkg : packages) {System.out.println("Package "+index+" : "+pkg); index++;}
         return packages.size();
     }
 }
