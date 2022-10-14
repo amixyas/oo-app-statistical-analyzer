@@ -95,7 +95,7 @@ public class Question8To13 {
 
 
     public Map<String, List<String>> getMethods10Lines () {
-        
+
         Map<String, List<String>> methods10lines = new HashMap<>();
         Map<String, MethodDeclaration[]> methodsTemp = new HashMap<>();
         for (var entry : classVisitor.getMethods().entrySet()) methodsTemp.put(entry.getKey(),entry.getValue());
@@ -131,15 +131,21 @@ public class Question8To13 {
         return methods10lines;
     }
 
-    public int getMaxParamsNbr () {
+    public void getMaxParamsNbr () {
+        String methodName = "";
         int max = 0;
         for (int i = 1; i <= maxMethods; i++)
             for (var entry : methods.entrySet())
                 for (MethodDeclaration method : entry.getValue()) {
-                    if (max <= method.parameters().size()) max = method.parameters().size();
-                    method.parameters().forEach(p-> System.out.println(p.toString()));
+                    if (max <= method.parameters().size()) {
+                        max = method.parameters().size();
+                        methodName = method.getName().toString();
+                    }
                 }
-        return max;
+
+        System.out.println("The maximum number of method parameters compared to all methods of the app = "+max);
+        System.out.println("Method name that contain this max number : "+methodName);
+
     }
 
 }
