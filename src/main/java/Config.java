@@ -5,6 +5,8 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import java.util.Map;
 
+//mvn clean compile assembly:single
+
 public class Config {
 
     // Create AST parser :
