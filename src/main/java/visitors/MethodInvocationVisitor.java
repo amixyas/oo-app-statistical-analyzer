@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import GUI_Package.StMethod;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.MethodInvocation;
@@ -37,12 +38,26 @@ public class MethodInvocationVisitor extends ASTVisitor {
         return null;
     }
 
+    public void callGraph(StMethod stMethod){
+
+        Set<String> methodCalleds = getMethodInvocationsNames();
+        if (methodCalleds.size() > 0) {
+            for (String name : methodCalleds) {
+                StMethod call = new StMethod();
+                call.setName(name);
+                stMethod.addCall(call);
+            }
+        }
+    }
+
     public String callGraph() {
         String data = "";
-        String returnType = getMethodReturnType();
-        if (returnType != null)
+        //String returnType = getMethodReturnType();
+        /*if (returnType != null)
             data = data + "\n" + "Method return type : " + returnType;
+         */
         Set<String> methodCalleds = getMethodInvocationsNames();
+
         if (methodCalleds.size() > 0) {
             data = data + "\n";
             data = data + "List of called methods: \n";
