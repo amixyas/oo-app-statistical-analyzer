@@ -7,7 +7,6 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 public class Question1 {
 
     CompilationUnit parse;
-    public static int totalClassesNbr = 0;
     public static PackageVisitor  packageVisitor = new PackageVisitor();
 
     public Question1 (CompilationUnit parse){
@@ -15,11 +14,14 @@ public class Question1 {
         parse.accept(packageVisitor);
     }
 
-    public int getTotalClassesNbr(){
-        for (TypeDeclaration Class : this.packageVisitor.getClasses()) {
-            System.out.println("Class name: " + Class.getName());
-            totalClassesNbr++;
-        }
-        return totalClassesNbr;
+    public int printClasses(){
+        int index = 1;
+        for (TypeDeclaration Class : this.packageVisitor.getClasses()) {System.out.println("Class "+index+" name: "+Class.getName()); index++;}
+        return this.packageVisitor.getClasses().size();
     }
+
+    public int getTotalClassesNbr(){
+        return this.packageVisitor.getClasses().size();
+    }
+
 }
