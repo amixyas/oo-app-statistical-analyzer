@@ -7,11 +7,8 @@ import java.util.Map;
 
 public class Config {
 
-
-    public static final String jrePath = "/usr/lib/jvm/java-11-openjdk-amd64";
-
     // Create AST parser :
-    static CompilationUnit createOwnParse(char[] classSource, String projectSourcePath) {
+    static CompilationUnit createOwnParse(char[] classSource, String projectSourcePath, String jrePath) {
 
         // handles JDK +1.6
         ASTParser parser = ASTParser.newParser(AST.JLS4);
