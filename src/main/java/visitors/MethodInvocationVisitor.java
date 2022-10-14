@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import GUI_Package.StMethod;
+import GUI_Package.Method;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.MethodInvocation;
@@ -38,14 +38,14 @@ public class MethodInvocationVisitor extends ASTVisitor {
         return null;
     }
 
-    public void callGraph(StMethod stMethod){
+    public void callGraph(Method method){
 
         Set<String> methodCalleds = getMethodInvocationsNames();
         if (methodCalleds.size() > 0) {
             for (String name : methodCalleds) {
-                StMethod call = new StMethod();
+                Method call = new Method();
                 call.setName(name);
-                stMethod.addCall(call);
+                method.addCall(call);
             }
         }
     }
