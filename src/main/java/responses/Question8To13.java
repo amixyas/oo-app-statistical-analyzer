@@ -17,7 +17,7 @@ public class Question8To13 {
     List<String> classes10attributes;
     List<String> classes10methodsAttributes =  new ArrayList<>();
     List<String> classesXmethods;
-    List<String> methods10lines;    int maxClasses;
+    int maxClasses;
     int maxMethods;
 
     Map<String, MethodDeclaration[]> methods = classVisitor.getMethods();
@@ -86,38 +86,49 @@ public class Question8To13 {
     }
 
 
-    public List<String> getMethods10Lines () {
-        methods10lines =  new ArrayList<>();
-
-        Map<String, MethodDeclaration[]> methodsTemp = new HashMap<>();
-        for (var entry : classVisitor.getMethods().entrySet()) methodsTemp.put(entry.getKey(),entry.getValue());
-
-        int max = 0;
-        String name = "";
-        for (int i = 1; i <= maxMethods; i++) {
-            for (var entry : methodsTemp.entrySet()) {
-                for (MethodDeclaration method : entry.getValue()) {
-                    //System.out.println( method.getName().toString());
-                    if (max <= method.getBody().toString().split("\n").length) {
-                        max = method.getBody().toString().split("\n").length;
-                        name = method.getName().toString();
-                    }
-                }
-            }
-            methods10lines.add(name);
-            max = 0;
-            methodsTemp.remove(name);
-        }
-        methods10lines.forEach(methodName-> System.out.println("-"+methodName));
-        return methods10lines;
-    }
-
-
     public List<String> getClassesXMethods(int x) {
         classesXmethods =  new ArrayList<>();
         for (var entry : methods.entrySet()) if (x <= entry.getValue().length) classesXmethods.add(entry.getKey());
         classesXmethods.forEach(classeName-> System.out.println("-"+classeName));
         return classesXmethods;
+    }
+
+
+    public Map<String, List<String>> getMethods10Lines () {
+        
+        Map<String, List<String>> methods10lines = new HashMap<>();
+        Map<String, MethodDeclaration[]> methodsTemp = new HashMap<>();
+        for (var entry : classVisitor.getMethods().entrySet()) methodsTemp.put(entry.getKey(),entry.getValue());
+        List<String> temp = new ArrayList<>();
+        int max = 0;
+        String name = "";
+
+        for (var entry : methodsTemp.entrySet()) {
+            double doubleNumber = entry.getValue().length*10.0/100;
+            int maxMethodsPerClass = (int) doubleNumber;
+            if (maxMethodsPerClass == 0 || (doubleNumber - maxMethodsPerClass) >= 0.5 ) maxMethodsPerClass += 1;
+            for (int i = 1; i <= maxMethodsPerClass; i++) {
+                for (MethodDeclaration method : entry.getValue()) {
+                    if (!method.getName().toString().equals(name))
+                        if (max <= method.getBody().toString().split("\n").length) {
+                            max = method.getBody().toString().split("\n").length;
+                            name = method.getName().toString();
+                        }
+                }
+                temp.add(name);
+                max = 0;
+            }
+            methods10lines.put(entry.getKey(),temp);
+            temp = new ArrayList<>();
+        }
+
+        for (var entry : methods10lines.entrySet()) {
+            System.out.println("Classe name : "+entry.getKey());
+            System.out.println("10% of Methods with largest number of lines of code are : ");
+            for (String method : entry.getValue())
+                System.out.println("-"+method);
+        }
+        return methods10lines;
     }
 
     public int getMaxParamsNbr () {
