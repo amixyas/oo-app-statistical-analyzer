@@ -10,13 +10,13 @@ import java.util.*;
  * Make next relations : Class-Attributes and Class-Methods
  * In this visitor i made 3 solutions to get attributes and make the relation Class-Attributes
  and every solution has its own pros and cons.
-*/
+ */
 
 public class ClassVisitor extends ASTVisitor{
 
     /**  TODO : SOL-Variables-1
      public static Map<String, FieldDeclaration[]> variables = new HashMap<String, FieldDeclaration[]>();
-    */
+     */
 
     public static Map<String, MethodDeclaration[]> methods = new HashMap<>();
     public  Map<String, MethodDeclaration[]> getMethods() {return methods;}
@@ -61,11 +61,11 @@ public class ClassVisitor extends ASTVisitor{
      public static Map<String, VariableDeclaration> variables = new HashMap<String, VariableDeclaration>();
 
      public boolean visit (VariableDeclarationFragment node) {
-        variables.put(node.getParent().toString(),node);
-        return super.visit((VariableDeclarationFragment) node);
+     variables.put(node.getParent().toString(),node);
+     return super.visit((VariableDeclarationFragment) node);
      }
      public Map<String, VariableDeclaration> getVariables() {
-        return variables;
+     return variables;
      }
      */
 
@@ -97,12 +97,12 @@ public class ClassVisitor extends ASTVisitor{
     }
     public List<String> getParent() {return parents;}
 
-    public Map<String, List<String>> getParentVariables() {
-        pushParentVariables();
+    public Map<String, List<String>> getParentVariables(boolean show) {
+        pushParentVariables(show);
         return parentVariables;
     }
 
-    public void pushParentVariables () {
+    public void pushParentVariables (boolean show) {
         List<List<String>> vars = new ArrayList<>();
         List<String> temp = new ArrayList<>();
 
@@ -119,10 +119,10 @@ public class ClassVisitor extends ASTVisitor{
         for (int k = 0; k < vars.size(); k++)
             parentVariables.put(clearParents.get(k), vars.get(k));
 
-
-         for (var entry : parentVariables.entrySet())
-         System.out.println("class : "+entry.getKey()+" --- attributes : "+ entry.getValue()+"\n");
-
+        if (show) {
+            for (var entry : parentVariables.entrySet())
+                System.out.println("class : "+entry.getKey()+" --- attributes : "+ entry.getValue()+"\n");
+        }
 
     }
 }
