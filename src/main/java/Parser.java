@@ -10,13 +10,12 @@ import responses.*;
 
 public class Parser {
 
-    public static final String projectPath = "/home/ilyas/Documents/#Others/Univ-montpellier/Tps-um/ERL/oo-app-statistical-analyzer/src/main/resources/Calculator";
+    //public static final String projectPath = "/home/ilyas/Documents/#Others/Univ-montpellier/Tps-um/ERL/oo-app-statistical-analyzer/src/main/resources/Calculator";
     //public static final String projectPath = "/home/ilyas/Documents/#Others/Univ-montpellier/Tps-um/ERL/tp1-part1/src/main/resources/Project";
-    public static final String projectSourcePath = projectPath + "/src";
-    public static final String jrePath = "/usr/lib/jvm/java-11-openjdk-amd64";
+    //public static final String projectSourcePath = projectPath + "/src";
+    //public static final String jrePath = "/usr/lib/jvm/java-11-openjdk-amd64";
 
-    static Question1 question1 = null;
-    //Question2 question2 = null;
+    static Question1_2 question1_2 = null;
     static Question3_5_7 question3_5_7 = null;
     static Question4 question4 = null;
     static Question6 question6 = new Question6();
@@ -27,14 +26,12 @@ public class Parser {
 
         Scanner sc= new Scanner(System.in);
 
-        /**
-        System.out.println("Before we start, please provide to system the next requirements : ");
-        System.out.println("The project path you want to work on it : ");
+        System.out.println("\nBefore we start, please provide to system the next requirements : ");
+        System.out.println("\nThe project path you want to work on it : ");
         String projectPath = sc.next();
         String projectSourcePath = projectPath + "/src";
         System.out.println("JDK path : ");
         String jrePath = sc.next();
-        */
 
         // read java files
         final File folder = new File(projectSourcePath);
@@ -42,12 +39,11 @@ public class Parser {
         for (File fileEntry : javaFiles) {
             String content = FileUtils.readFileToString(fileEntry);
             CompilationUnit parse = Config.createOwnParse(content.toCharArray(), projectSourcePath,jrePath);
-            question1 = new Question1(parse); // fill package visitor
-            //question2 = new Question2(parse);
+            question1_2 = new Question1_2(parse); // fill package visitor
             question3_5_7 = new Question3_5_7(parse); // fill class visitor
             question4 = new Question4(parse);
         }
-        question8To13 = new Question8To13(question1.getTotalClassesNbr(), question3_5_7.getTotalMethodsNbr());
+        question8To13 = new Question8To13(question1_2.getTotalClassesNbr(), question3_5_7.getTotalMethodsNbr());
         menu();
     }
 
@@ -74,7 +70,6 @@ public class Parser {
 
         System.out.print("What do you choose : ");
         int input = sc.nextInt();
-        
         while(input > 14 || input < 0 ){
             System.out.print("Wrong input, choose again : ");
             input = sc.nextInt();
@@ -85,10 +80,10 @@ public class Parser {
         }
         if (input==1){
             System.out.println("");
-            System.out.println("\nTotal classes = " + question1.printClasses());
+            System.out.println("\nTotal classes = " + question1_2.printClasses());
         }
         else if (input==2){
-            ///System.out.println("2 : " + question2.getTotalLines());
+            question1_2.getTotalLines();
         }
         else if (input==3){
             System.out.println("\nTotal methods = " + question3_5_7.printMethods());
@@ -97,14 +92,14 @@ public class Parser {
             System.out.println("\nTotal packages = " + question4.getTotalPackagesNbr());
         }
         else if (input==5){
-            Double MoyMethodsPerClass = (question3_5_7.getTotalMethodsNbr() * 1.00 ) / question1.getTotalClassesNbr();
+            Double MoyMethodsPerClass = (question3_5_7.getTotalMethodsNbr() * 1.00 ) / question1_2.getTotalClassesNbr();
             System.out.println("\nAverage number of methods per class = " + MoyMethodsPerClass);
         }
         else if (input==6){
             System.out.println("\nAverage number of lines of code per method : " + question6.getMethodMoyLines());
         }
         else if (input==7){
-            Double MoyAttributesPerClass = question3_5_7.getTotalVariablesNbr()* 1.00/question1.getTotalClassesNbr();
+            Double MoyAttributesPerClass = question3_5_7.getTotalVariablesNbr()* 1.00/ question1_2.getTotalClassesNbr();
             System.out.println("\nAverage number of attributes per class = " + MoyAttributesPerClass);
         }
         else if (input==8){
